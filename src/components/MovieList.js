@@ -2,7 +2,6 @@ import React from "react";
 import MovieCard from "./MovieCard";
 
 const MovieList = ({ title, movies }) => {
-  console.log(movies);
 
   // Check if movies is an array before mapping
   if (!Array.isArray(movies) || movies.length === 0) {

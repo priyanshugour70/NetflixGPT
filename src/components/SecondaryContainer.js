@@ -4,7 +4,6 @@ import { useSelector } from "react-redux";
 
 const SecondaryContainer = () => {
   const movies = useSelector((store) => store.movies);
-  console.log("Hello " + movies);
 
   // Check if movies or nowPlayingMovies is null or undefined before rendering
   if (!movies || !movies.nowPlayingMovies) {
