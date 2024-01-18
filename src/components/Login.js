@@ -40,7 +40,7 @@ const Login = () => {
           const user = userCrential.user;
           updateProfile(user, {
             displayName: name.current.value,
-            photoURL:USER_AVATAR,
+            photoURL: USER_AVATAR,
           })
             .then(() => {
               const { uid, email, displayName, photoURL } = auth.currentUser;
@@ -93,6 +93,7 @@ const Login = () => {
       <Header />
       <div className="absolute">
         <img
+          className="h-screen object-cover"
           src={MAIN_BACKGROUND}
           alt="Netlfix Background Img"
         />
@@ -101,7 +102,7 @@ const Login = () => {
       <form
         onSubmit={(e) => e.preventDefault()}
         action=""
-        className=" w-3/12 absolute p-12 bg-black my-36 mx-auto right-0 left-0 text-white rounded-lg bg-opacity-80"
+        className="w-full md:w-3/12 absolute p-12 bg-black my-36 mx-auto right-0 left-0 text-white rounded-lg bg-opacity-80"
       >
         <h1 className="font-bold text-3xl py-4">
           {issignInForm ? "Sign In" : "Sign Up"}
@@ -111,22 +112,22 @@ const Login = () => {
             ref={name}
             type="text"
             placeholder="Full Name"
-            className="p-4 my-4 w-full bg-gray-600"
+            className="p-4 my-4 w-full bg-gray-700"
           />
         )}
         <input
           ref={email}
           type="text"
           placeholder="Email & Phone Number"
-          className="p-4 my-4 w-full bg-gray-600"
+          className="p-4 my-4 w-full bg-gray-700"
         />
         <input
           ref={password}
           type="password"
           placeholder="Password"
-          className="p-4 my-4 w-full bg-gray-600"
+          className="p-4 my-4 w-full bg-gray-700"
         />
-        <p className="text-red-500 font-bold text-lg py-2 ">{errorMessage}</p>
+        <p className="text-red-500 font-bold text-lg py-2">{errorMessage}</p>
         <button
           className="p-4 my-6 bg-red-700 w-full rounded-lg"
           onClick={handleButtonClick}

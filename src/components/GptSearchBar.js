@@ -1,7 +1,7 @@
 import React, { useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import lang from "../utils/languageConstants";
-import openai from "../utils/openai";
+// import openai from "../utils/openai";
 import { API_OPTIONS } from "../utils/constants";
 import { addGptMovieResult } from "../utils/gptSlice";
 
@@ -31,7 +31,6 @@ const GptSearchBar = () => {
   };
 
   const handleGptSearchClick = async () => {
-
     // const gptQuery =
     //   "Act as a movie recommender system and suggest some movies for the query : " +
     //   searchText.current.value +
@@ -62,10 +61,10 @@ const GptSearchBar = () => {
   };
 
   return (
-    <div className="pt-[10%] flex justify-center ">
+    <div className="pt-[35%] md:pt-[10%] flex justify-center">
       <form
         action=""
-        className="w-1/2 bg-black grid grid-cols-12"
+        className="w-full md:w-1/2 bg-black grid grid-cols-12"
         onSubmit={(e) => e.preventDefault()}
       >
         <input
@@ -75,7 +74,7 @@ const GptSearchBar = () => {
           placeholder={lang[langKey].gptSearchPlaceholder}
         />
         <button
-          className=" py-2 px-4 m-4 bg-red-700 text-white rounded-lg col-span-3"
+          className="col-span-3 m-4 py-2 px-4 bg-red-700 text-white rounded-lg"
           onClick={handleGptSearchClick}
         >
           {lang[langKey].search}
