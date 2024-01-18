@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import lang from "../utils/languageConstants";
 import openai from "../utils/openai";
 import { API_OPTIONS } from "../utils/constants";
-import {addGptMovieResult} from "../utils/gptSlice";
+import { addGptMovieResult } from "../utils/gptSlice";
 
 const GptSearchBar = () => {
   const langKey = useSelector((store) => store.config.lang);
@@ -17,28 +17,25 @@ const GptSearchBar = () => {
         "https://api.themoviedb.org/3/search/movie?query=" + movie,
         API_OPTIONS
       );
-  
+
       if (!response.ok) {
         throw new Error(`HTTP error! Status: ${response.status}`);
       }
-  
+
       const json = await response.json();
-      console.log(json); // Log the JSON response
       return json.results;
     } catch (error) {
       console.error("Error fetching data:", error);
       throw error;
     }
   };
-  
 
   const handleGptSearchClick = async () => {
-    console.log(searchText.current.value);
 
-    const gptQuery =
-      "Act as a movie recommender system and suggest some movies for the query : " +
-      searchText.current.value +
-      ". only give me names of 5 movies, comma separated like the example result given ahead. Example Result : Gadar, Sholay, Don, Goalmal, Koi Mil Gaya ";
+    // const gptQuery =
+    //   "Act as a movie recommender system and suggest some movies for the query : " +
+    //   searchText.current.value +
+    //   ". only give me names of 5 movies, comma separated like the example result given ahead. Example Result : Gadar, Sholay, Don, Goalmal, Koi Mil Gaya ";
 
     // // Make an API call to GPT API and get Movie Results
     // const gptResults = await openai.chat.completions.create({
@@ -53,18 +50,15 @@ const GptSearchBar = () => {
     // console.log(gptResults.choices?.[0]?.message?.content);
     // const gptMovies = gptResults.choices?.[0]?.message?.content.split(",");
 
-    const gptMovies =
-      "Jabariya Jodi, Kabir Singh, Dilwale Dulhania Le Jayenge, Yeh Jawaani Hai Deewani, Kuch Kuch Hota Hai".split(
-        ","
-      );
+    const gptMovies = searchText.current.value.split(",");
 
     const promiseArray = gptMovies.map((movie) => searchMovieTMDB(movie));
 
     const tmdbResults = await Promise.all(promiseArray);
 
-    console.log(tmdbResults)
-
-    dispatch(addGptMovieResult({movieNames: gptMovies, movieResults: tmdbResults}));
+    dispatch(
+      addGptMovieResult({ movieNames: gptMovies, movieResults: tmdbResults })
+    );
   };
 
   return (
